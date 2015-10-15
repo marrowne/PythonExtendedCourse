@@ -30,27 +30,27 @@ def factr(x):
     p = 0 # zmienne przechowujące aktualną
     w = 0 # podstawę oraz wykładnik
     
-    list = [] # używana jest tablica (lista), nie bepośrednie wypisywanie
+    _list = [] # używana jest tablica (lista), nie bepośrednie wypisywanie
 
     while i <= floor( sqrt(x) ):
         if x % i == 0:
-            list, p, w = pair(i, list, p, w)
+            _list, p, w = pair(i, _list, p, w)
             x //= i
         else:
             i += 1
             
     if x != p:    # jeżeli nie trzeba dodać jeszcze jednej potęgi
-        list.append( (p,w) )
+        _list.append( (p,w) )
     else:       # wpp. powiększ wykładnik liczby pierszej i zakończ
                 # działanie funkcji ( tak, żeby znowu nie nie dodać (x,1) )
-        list.append( (p,w+1) )
-        return list
+        _list.append( (p,w+1) )
+        return _list
     if x > 1:
-        list.append( (x,1) )
+        _list.append( (x,1) )
 
-    return list
+    return _list
     
-def pair(i, list, p, w):
+def pair(i, _list, p, w):
     """ 
     Funkcja tworząca pary oraz powiększająca wykładniki.
     
@@ -61,14 +61,14 @@ def pair(i, list, p, w):
     if i == p:
         w += 1
     else:
-        if p != 0: list.append( (p,w) )
+        if p != 0: _list.append( (p,w) )
         p = i
         w = 1
     
-    return list, p, w
+    return _list, p, w
 
 
 print("Podaj liczbę: ")
 number = int( input() )
-list = factr(number)
-print(list)
+_list = factr(number)
+print(_list)
