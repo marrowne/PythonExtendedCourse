@@ -13,8 +13,6 @@ kontrolę poprawności danych, tj. sprawdzenie, czy obj2 jest klasy
 (lub podklasy) ObiektyDodawalne.
 """
 
-
-
 class ObiektyDodawalne:
     def __add__(self, obj2):
         if (self.__class__.__name__ != 'ObiektyDodawalne' \
@@ -24,14 +22,16 @@ class ObiektyDodawalne:
                 and ObiektyDodawalne not in obj2.__class__.__bases__):
             raise "Drugi element nie należy do klasy ObiektyDodawalne"
 
+        new_obj = ObiektyDodawalne()
+        new_obj.__dict__ = self.__dict__.copy()
+        dict2 = obj2.__dict__.copy()
 
-        while obj2.__dict__ != {}:
-            (key,value) = obj2.__dict__.popitem()
-            if key in self.__dict__:
+        while dict2 != {}:
+            (key, value) = dict2.popitem()
+            if key in new_obj.__dict__:
                 print("Pole", key, "występuje w obu klasach")
-            #      dowiedzieć się dlaczego spacja przy key
-            self.__dict__[key] = value
-        return self
+            new_obj.__dict__[key] = value
+        return new_obj
 
 
 
@@ -50,7 +50,12 @@ class Obiekt3(ObiektyDodawalne):
         self.val1 = arg1
         self.val3 = arg2
 
+
+
 obj1 = Obiekt1(1,2)
 obj2 = Obiekt3(3,4)
 
 obj = obj1 + obj2
+print("obj =", obj.__dict__)
+print("obj1 =", obj1.__dict__)
+print("obj2 =",obj2.__dict__)

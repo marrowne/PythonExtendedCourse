@@ -60,19 +60,25 @@ def fibonacci_number_exception(nth):
         return res
 
 
+
 # Time of execution
 
 if __name__ == '__main__':
     import timeit
     print("A casual factorial function executes in:",\
-          timeit.timeit("factorial_classic(50)", \
-                        setup="from __main__ import factorial_classic"),"secs")
+          timeit.timeit("factorial_classic(950)", \
+                        setup="from __main__ import factorial_classic", number=1),"secs")
     print("and an another using exception executes in:",\
-          timeit.timeit("factorial_exception(50)", \
-                        setup="from __main__ import factorial_exception"),"secs\n")
+          timeit.timeit("factorial_exception(950)", \
+                        setup="from __main__ import factorial_exception", number=1),"secs\n")
     print("A casual Fibonacci function executes in:",\
-          timeit.timeit("fibonacci_number_classic(15)", \
-                        setup="from __main__ import fibonacci_number_classic"),"secs")
+          timeit.timeit("fibonacci_number_classic(30)", \
+                        setup="from __main__ import fibonacci_number_classic", number=1),"secs")
     print("and an another unsing exeception executes in:",\
-          timeit.timeit("fibonacci_number_exception(15)", \
-                        setup="from __main__ import fibonacci_number_exception"),"secs")
+          timeit.timeit("fibonacci_number_exception(30)", \
+                        setup="from __main__ import fibonacci_number_exception", number=1),"secs")
+
+print(factorial_classic(5))
+print(factorial_exception(5))
+print(fibonacci_number_classic(10))
+print(fibonacci_number_exception(10))

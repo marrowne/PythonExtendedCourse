@@ -49,11 +49,16 @@ def pierwsze_funkcyjna(n):
 
     return list(list3)
 
+
+
 if __name__ == '__main__':
     import timeit
     print("A version using list comprehension executes in:",\
-          timeit.timeit("pierwsze_skladana(20)",\
+          timeit.timeit("pierwsze_skladana(5000)",\
                         setup="from __main__ import pierwsze_skladana", number=1), "secs")
     print("and a functional varsion executes in:",\
-          timeit.timeit("pierwsze_funkcyjna(20)",\
+          timeit.timeit("pierwsze_funkcyjna(5000)",\
                         setup="from __main__ import pierwsze_funkcyjna", number=1), "secs")
+
+print(pierwsze_skladana(20))
+print(pierwsze_funkcyjna(20))

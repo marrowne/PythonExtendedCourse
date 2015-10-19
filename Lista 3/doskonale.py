@@ -32,23 +32,30 @@ niż n, na przykład:
 from functools import reduce
 
 def doskonale_skladana(n):
-    factors = lambda x: [i for i in range(1,x) if x % i == 0]
+    factors = lambda x: [i for i in range(1, x) if x % i == 0]
+    # pominięcie dzielenia przez samą siebie
+
     perfect_numbers = [number for number in range(1, n+1)\
                        if sum(factors(number)) == number]
     return perfect_numbers
 
-def is_perfect(value):
-    dividers = filter(lambda i: value % i == 0, range(1, value))
-    return reduce(lambda x, y: x + y, dividers) == value
+def is_perfect(x):
+    dividers = filter(lambda i: x % i == 0, range(1, x))
+    return reduce(lambda x, y: x + y, dividers) == x
 
 def doskonale_funkcyjna(n):
-    return list(filter(lambda x: is_perfect(x), range(2, n)))
+    return list(filter(lambda x: is_perfect(x), range(2, n+1)))
+
+
 
 if __name__ == '__main__':
     import timeit
     print("A version using list comprehension executes in:",\
-          timeit.timeit("doskonale_skladana(10000)",\
+          timeit.timeit("doskonale_skladana(1000)",\
                         setup="from __main__ import doskonale_skladana", number=1), "secs")
     print("and a functional version executes in:",\
-          timeit.timeit("doskonale_funkcyjna(10000)",\
+          timeit.timeit("doskonale_funkcyjna(1000)",\
                         setup="from __main__ import doskonale_funkcyjna", number=1), "secs")
+
+print(doskonale_skladana(10000))
+print(doskonale_funkcyjna(10000))
